@@ -7,3 +7,4 @@ scikit-learn
 librosa
 scipy
 IPython
+streamlit_option_menu
