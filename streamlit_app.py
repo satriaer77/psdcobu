@@ -36,7 +36,8 @@ with st.sidebar:
   )
 
 
-
+cobu = pd.read_csv('datasets/psd_nopreprocessing.csv')
+cobu["ddd_car"] = cobu["ddd_car"].astype('category')
 
 
 # Membaca data dari file csv
@@ -85,10 +86,10 @@ if selected == "Preprocessing":
 
 
   for column in columns_to_fill:
-    mean_value = df[column].mean()
-    df[column].fillna(mean_value, inplace=True)
+    mean_value = cobu[column].mean()
+    cobu[column].fillna(mean_value, inplace=True)
 
-  df
+  cobu
 
 
   st.write('\n\n\n### STEP 2')
@@ -96,11 +97,11 @@ if selected == "Preprocessing":
 
 
   # Mencari modus dalam kolom 'ddd_car'
-  modus_kolom = df['ddd_car'].mode()
+  modus_kolom = cobu['ddd_car'].mode()
 
   # Mengisi nilai dengan modus pada kolom 'ddd_car'
-  df['ddd_car'].fillna(modus_kolom[0], inplace=True)
-  df
+  cobu['ddd_car'].fillna(modus_kolom[0], inplace=True)
+  cobu
 
 
 
@@ -109,12 +110,11 @@ if selected == "Preprocessing":
 
 
   # Mencari median dalam kolom 'RR'
-  median_kolom = df['RR'].median()
+  median_kolom = cobu['RR'].median()
 
   # Mengganti nilai 0 dengan median pada kolom 'RR'
-  df['RR'] = df['RR'].replace(0, median_kolom)
-
-  df
+  cobu['RR'] = cobu['RR'].replace({0: np.nan, None: np.nan}).fillna(median_kolom)
+  cobu
 
 if selected == "Variable Independen & Dependen":
 
