@@ -93,6 +93,8 @@ if selected == "Modelling":
   intercept  = mlRModel.intercept_
   coeficient = mlRModel.coef_
 
+  line_x = np.linspace(min(yTrain), max(yTrain), 100)
+  line_y = coeficient * line_x + intercept
 
   #Mendapatkan nilai prediksi dari hasil train data
   predTrain  = mlRModel.predict(xTrain)
