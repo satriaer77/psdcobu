@@ -102,7 +102,7 @@ if selected == "Modelling":
   plt.ylabel("Curah Hujan Prediksi")
   st.pyplot(plt)
 
-    st.write(f"""
+  st.write(f"""
 
     ===== SCORE MODEL =====
 
