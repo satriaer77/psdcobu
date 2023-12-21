@@ -19,4 +19,33 @@ import scipy.stats
 import os
 import librosa
 from scipy.stats import skew, kurtosis, mode
-st.write('Hello, *World!* :sunglasses:')
+
+
+
+st.write("# Prediksi Curah Hujan dengn menggunakan multiple Linear Regression")
+
+
+with st.sidebar:
+  selected = option_menu(
+      menu_title="Main Menu",
+      options=["Dataset", "Split Data", "Normalisasi Data", "Hasil Akurasi", "Reduksi Data", "Grid Search KNN", "Prediksi"],
+      default_index=0
+  )
+
+
+if selected == "Dataset":
+    st.write('''## Dataset''')
+    st.write(df)
+    st.write('''Dataset ini merupakan hasil Ekstraksi Ciri Audio yang mana audio yang digunakan berasal dari website Kaggle.''')
+    st.write('''Dataset ini memiliki jumlah data sebanyak 2800 dengan 22 fitur.''')
+    st.write('''#### Fitur-Fitur Pada Dataset''')
+    st.info('''
+    Fitur yang akan digunakan
+
+
+
+
+
+# Membaca data dari file csv
+df = pd.read_csv('datasets/psd.csv')
+df["ddd_car"] = df["ddd_car"].astype('category')
