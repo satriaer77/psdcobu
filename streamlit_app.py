@@ -98,17 +98,19 @@ if selected == "Modelling":
   predTrain  = mlRModel.predict(xTrain)
 
   plt.scatter(yTrain, predTrain)
+  plt.plot(line_x, line_y, color='red', label='Linear Line')
+
+
   plt.xlabel("Curah Hujan Aktual")
   plt.ylabel("Curah Hujan Prediksi")
   st.pyplot(plt)
 
   st.write(f"""
+    ===================================== SCORE MODEL ======================================
 
-    ===================================== SCORE MODEL =====================================
+                              MAE = {maep(yTrain, predTrain)}%
 
-    MAE = {maep(yTrain, predTrain)}%
-
-    =======================================================================================
+    ========================================================================================
     """)
 
 
