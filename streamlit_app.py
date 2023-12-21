@@ -82,6 +82,9 @@ if selected == "Variable Independen & Dependen":
 
 if selected == "Modelling":
 
+
+  xIndependen = df.drop(columns = ["RR", "Tanggal", "ddd_car","ff_avg","ddd_x","ff_x","ss"]) #Ambil Variabel Dependen yang dibutuhkan yaitu kecuali kolom tersebut yang didapatkan dari hasil korelasi
+  yDependen   = df["RR"]#Curah Hujan
   xTrain, xTest, yTrain, yTest = train_test_split(xIndependen, yDependen, test_size = 0.3, random_state=0) #Split Train
   mlRModel = LinearRegression()
   mlRModel.fit(xTrain, yTrain)
