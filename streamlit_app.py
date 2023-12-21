@@ -117,7 +117,7 @@ if selected == "Preprocessing":
   cobu
 
 if selected == "Variable Independen & Dependen":
-
+    df = df.drop(columns = ["Tanggal", "ddd_car"])
     st.write('''## Pemilihan Variabel Independen & Dependen''')
     st.write('''
         Pemilihan dari variabel independen diambil dari korelasi data set tetapi untuk variable dependen diambil sesuai topik yaitu curah hujan atau column RR ''')
