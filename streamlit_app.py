@@ -85,6 +85,7 @@ if selected == "Modelling":
 
   xIndependen = df.drop(columns = ["RR", "Tanggal", "ddd_car","ff_avg","ddd_x","ff_x","ss"]) #Ambil Variabel Dependen yang dibutuhkan yaitu kecuali kolom tersebut yang didapatkan dari hasil korelasi
   yDependen   = df["RR"]#Curah Hujan
+
   xTrain, xTest, yTrain, yTest = train_test_split(xIndependen, yDependen, test_size = 0.3, random_state=0) #Split Train
   mlRModel = LinearRegression()
   mlRModel.fit(xTrain, yTrain)
@@ -95,6 +96,20 @@ if selected == "Modelling":
 
   #Mendapatkan nilai prediksi dari hasil train data
   predTrain  = mlRModel.predict(xTrain)
+
+  plt.scatter(yTrain, predTrain)
+  plt.xlabel("Curah Hujan Aktual")
+  plt.ylabel("Curah Hujan Prediksi")
+  st.pyplot(plt)
+
+    st.write(f"""
+
+    ===== SCORE MODEL =====
+
+    MAE = {maep(yTrain, predTrain)}%
+
+    =======================
+    """)
 
 
 if selected == "Skenario Uji Coba":
