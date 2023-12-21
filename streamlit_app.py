@@ -50,22 +50,41 @@ if selected == "Dataset":
     st.info('''
     Fitur yang ada dalam datasets adalah sebagai berikut :
 
-    Tn: Temperatur minimum (°C)
-    Tx: Temperatur maksimum (°C)
-    Tavg: Temperatur rata-rata (°C)
-    RH_avg: Kelembapan rata-rata (%)
-    RR: Curah hujan (mm)
-    ss: Lamanya penyinaran matahari (jam)
-    ff_x: Kecepatan angin maksimum (m/s)
-    ddd_x: Arah angin saat kecepatan maksimum (°)
-    ff_avg: Kecepatan angin rata-rata (m/s)
-    ddd_car: Arah angin terbanyak (°)
+    1. Tn: Temperatur minimum (°C)
+    2. Tx: Temperatur maksimum (°C)
+    3. Tavg: Temperatur rata-rata (°C)
+    4. RH_avg: Kelembapan rata-rata (%)
+    5. RR: Curah hujan (mm)
+    6. ss: Lamanya penyinaran matahari (jam)
+    7. ff_x: Kecepatan angin maksimum (m/s)
+    8. ddd_x: Arah angin saat kecepatan maksimum (°)
+    9. ff_avg: Kecepatan angin rata-rata (m/s)
+    10.ddd_car: Arah angin terbanyak (°)
      ''')
 
     st.write(df)
 
 
 if selected == "Preprocessing":
+
+  st.write('''## Membagi Data Menjadi Data Uji Dan Data Testing''')
+  st.write('Data dibagi menjadi 30% sebagai data uji dan 70% data testing')
+
+
+
+if selected == "Variable Independen & Dependen":
+
+  st.write('''## Membagi Data Menjadi Data Uji Dan Data Testing''')
+  st.write('Data dibagi menjadi 30% sebagai data uji dan 70% data testing')
+
+
+if selected == "Modelling":
+
+  st.write('''## Membagi Data Menjadi Data Uji Dan Data Testing''')
+  st.write('Data dibagi menjadi 30% sebagai data uji dan 70% data testing')
+
+
+if selected == "Skenario Uji Coba":
 
   st.write('''## Membagi Data Menjadi Data Uji Dan Data Testing''')
   st.write('Data dibagi menjadi 30% sebagai data uji dan 70% data testing')
