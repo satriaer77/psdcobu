@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error as mae
 from sklearn.metrics import mean_absolute_percentage_error as maep
+from sklearn import preprocessing as prp
 
 from sklearn.linear_model import LinearRegression
 
