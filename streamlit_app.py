@@ -33,16 +33,6 @@ with st.sidebar:
   )
 
 
-if selected == "Dataset":
-    st.write('''## Dataset''')
-    st.write(df)
-    st.write('''Dataset ini merupakan hasil Ekstraksi Ciri Audio yang mana audio yang digunakan berasal dari website Kaggle.''')
-    st.write('''Dataset ini memiliki jumlah data sebanyak 2800 dengan 22 fitur.''')
-    st.write('''#### Fitur-Fitur Pada Dataset''')
-    st.info('''
-    Fitur yang akan digunakan
-
-
 
 
 
