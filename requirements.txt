@@ -3,7 +3,7 @@ streamlit
 seaborn
 pandas
 matplotlib
-sklearn
+scikit-learn
 librosa
 scipy
 
