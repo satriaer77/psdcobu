@@ -62,7 +62,6 @@ if selected == "Dataset":
     10.ddd_car: Arah angin terbanyak (°)
      ''')
 
-    st.write(df)
 
 
 if selected == "Preprocessing":
@@ -77,11 +76,22 @@ if selected == "Variable Independen & Dependen":
   st.write('''## Membagi Data Menjadi Data Uji Dan Data Testing''')
   st.write('Data dibagi menjadi 30% sebagai data uji dan 70% data testing')
 
+  xIndependen = df.drop(columns = ["RR", "Tanggal", "ddd_car","ff_avg","ddd_x","ff_x","ss"]) #Ambil Variabel Dependen yang dibutuhkan yaitu kecuali kolom tersebut yang didapatkan dari hasil korelasi
+  yDependen   = df["RR"]#Curah Hujan
+
 
 if selected == "Modelling":
 
-  st.write('''## Membagi Data Menjadi Data Uji Dan Data Testing''')
-  st.write('Data dibagi menjadi 30% sebagai data uji dan 70% data testing')
+  xTrain, xTest, yTrain, yTest = train_test_split(xIndependen, yDependen, test_size = 0.3, random_state=0) #Split Train
+  mlRModel = LinearRegression()
+  mlRModel.fit(xTrain, yTrain)
+
+  intercept  = mlRModel.intercept_
+  coeficient = mlRModel.coef_
+
+
+  #Mendapatkan nilai prediksi dari hasil train data
+  predTrain  = mlRModel.predict(xTrain)
 
 
 if selected == "Skenario Uji Coba":
