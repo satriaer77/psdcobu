@@ -43,7 +43,7 @@ cobu["ddd_car"] = cobu["ddd_car"].astype('category')
 # Membaca data dari file csv
 df = pd.read_csv('datasets/psd.csv')
 df["ddd_car"] = df["ddd_car"].astype('category')
-xIndependen = df.drop(columns = ["RR", "Tanggal", "ddd_car","ff_avg","ddd_x","ff_x","ss"]) #Ambil Variabel Dependen yang dibutuhkan yaitu kecuali kolom tersebut yang didapatkan dari hasil korelasi
+xIndependen = df.drop(columns = ["RR", "Tanggal", "ddd_car","ff_avg","ddd_x","ff_x","Tn", "Tx"]) #Ambil Variabel Dependen yang dibutuhkan yaitu kecuali kolom tersebut yang didapatkan dari hasil korelasi
 yDependen   = df["RR"]#Curah Hujan
 
 xTrain, xTest, yTrain, yTest = train_test_split(xIndependen, yDependen, test_size = 0.3, random_state=0) #Split Train
@@ -128,47 +128,24 @@ if selected == "Variable Independen & Dependen":
 
 if selected == "Modelling & Testing":
 
+  plt.scatter(yTrain, mlRModel.predict(xTrain), label='Training Data')
 
-  line_x = np.linspace(min(yTrain), max(yTrain), 100).reshape(-1, 1)
-  line_y = coeficient * line_x + intercept
 
-  # #Mendapatkan nilai prediksi dari hasil train data
-  # predTrain  = mlRModel.predict(xTrain)
-  #
-  # plt.scatter(yTrain, predTrain)
-  # plt.plot(line_x, line_y, color='red', label='Linear Line')
-  #
-  #
-  # plt.xlabel("Curah Hujan Aktual")
-  # plt.ylabel("Curah Hujan Prediksi")
-  # st.pyplot(plt)
-  #
-  # st.write(f"""
-  #   ===================================== SCORE MODEL ======================================
-  #
-  #                           MAE = {maep(yTrain, predTrain)}%
-  #
-  #   ========================================================================================
-  #   """)
+  plt.scatter(yTest, mlRModel.predict(xTest), label='Testing Data')
+  plt.plot(np.linspace(min(yTest), max(yTest), 100).reshape(-1, 1),
+          mlRModel.coef_ * np.linspace(min(yTest), max(yTest), 100).reshape(-1, 1) + mlRModel.intercept_,
+          color='red', label='Linear Line')
 
-  line_x = np.linspace(min(yTest), max(yTest), 100).reshape(-1, 1)
-  line_y = coeficient * line_x + intercept
-
-  predTest = mlRModel.predict(xTest)
-  plt.scatter(yTest, predTest)
-
-  plt.xlabel("Curah Hujan Aktual")
-  plt.ylabel("Curah Hujan Prediksi")
+  plt.xlabel("Curah Hujan")
+  plt.ylabel("Prediksi Curah Hujan")
+  plt.title("Testing Data - Linear Regression")
+  plt.legend()
   st.pyplot(plt)
 
-
-  st.write(f"""
-    ===================================== SCORE MODEL ======================================
-
-                            MAE = {maep(yTest, predTest)}%
-
-    ========================================================================================
-    """)
+  mae_test = maep(yTest, mlRModel.predict(xTest))
+  st.write(f"MAE on Testing Data: {mae_test}%")
+  mae_train = maep(yTrain, mlRModel.predict(xTrain))
+  st.write(f"MAE on Training Data: {mae_train}%")
 
 
 
@@ -177,19 +154,15 @@ if selected == "Skenario Uji Coba":
   st.write('''## Pada Skenario Uji Coba akan dilakukan beberapa uji untuk mengetahui prediksi yang diberikan apakah sudah sesuai''')
 
 
-  tn = st.number_input('Input Tn ')
-  st.write('Tn ', tn)
-
-
-  tx = st.number_input('Input Tx ')
-  st.write('Tx ', tx)
+  ss = st.number_input('Input ss ')
+  st.write('ss ', ss)
 
 
   tavg = st.number_input('Input Tavg ')
   st.write('Tavg ', tavg)
 
   rhavg = st.number_input('Input RHavg ')
-  st.write('RHavg ', tn)
+  st.write('RHavg ', rhavg)
 
   # ff_x = st.number_input('Input ff_x ')
   # st.write('ff_x ', ff_x)
@@ -202,7 +175,7 @@ if selected == "Skenario Uji Coba":
   # st.write('ff_avg ', ff_avg)
 
   # ff_x,ddd_x,ff_avg
-  test1 = np.array([[tn,tx,tavg,rhavg]]).reshape(1, -1)
+  test1 = np.array([[ss,tavg,rhavg]]).reshape(1, -1)
   st.write(f"""
 
 
